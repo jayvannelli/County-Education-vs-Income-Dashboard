@@ -9,6 +9,23 @@ def main():
 
     df = get_data()
 
+    top_left_column, top_right_column = st.columns([2, 1])
+    with top_left_column:
+        # These are for spacing to make logos on an even level.
+        st.write("")
+        st.write("")
+        st.write("")
+        st.image("images/streamlit-logo.png", width=400)
+    with top_right_column:
+        st.image("images/kaggle.png", width=250)
+
+    with st.expander("Link to Kaggle Dataset"):
+        st.write(
+            """
+            Data source: https://www.kaggle.com/datasets/ruddygunawan/per-capita-income-by-county-2021-vs-education
+            """
+        )
+
     st.subheader("Counties With Highest Personal Income")
 
     st.write("---")
