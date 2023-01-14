@@ -41,11 +41,11 @@ def main():
         year = st.selectbox("Select year:", options=[2019, 2020, 2021])
         formatted_year = f"per_capita_personal_income_{year}"
 
-    req_data = df.nlargest(n=top_n_values, columns=formatted_year)
+    n_largest_data = df.nlargest(n=top_n_values, columns=formatted_year)
 
     plost.bar_chart(
         title=formatted_year.title().replace("_", " "),
-        data=req_data,
+        data=n_largest_data,
         bar="county",
         value=formatted_year,
         direction='horizontal',
@@ -55,7 +55,7 @@ def main():
         st.dataframe(df)
 
     with st.expander("Display custom pandas DataFrame"):
-        st.dataframe(req_data)
+        st.dataframe(n_largest_data)
 
     st.write("---")
 
