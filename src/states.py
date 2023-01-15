@@ -11,12 +11,12 @@ def get_state_abbreviations() -> pd.Series:
 
 def state_counties(state_abbreviation: str) -> pd.Series | None:
     """Returns list of counties within passed state (by abbreviation)."""
-    all_state_abbvs = get_state_abbreviations()
+    allowable_state_abbvs = get_state_abbreviations()
 
-    if state_abbreviation not in all_state_abbvs:
+    if state_abbreviation not in allowable_state_abbvs:
         raise ValueError(
             f"Invalid state abbreviation: {state_abbreviation}."
-            f"Valid state abbreviations include: {all_state_abbvs}."
+            f"Valid state abbreviations include: {allowable_state_abbvs}."
         )
 
     state_df = full_dataframe.loc[full_dataframe['state'] == state_abbreviation]
