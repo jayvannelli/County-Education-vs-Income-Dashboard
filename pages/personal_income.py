@@ -17,14 +17,12 @@ def main():
                                        options=df['state'].unique())
 
         state_df = df.loc[df['state'] == state_selection]
-        with st.expander("Display DataFrame"):
-            st.dataframe(state_df)
 
         year_selection = st.selectbox("Select year to display:", options=[2019, 2020, 2021])
 
         plost.bar_chart(
             data=state_df,
-            title=f"{state_selection} Per Capita Personal Income ({year_selection})",
+            title=f"{state_selection} Per Capita Personal Income by County ({year_selection})",
             bar="county",
             value=f"per_capita_personal_income_{year_selection}",
             direction='horizontal',
@@ -43,6 +41,11 @@ def main():
 
                 single_state_df = df.loc[df['state'] == state]
                 st.dataframe(single_state_df)
+
+    st.write("---")
+
+    with st.expander(f"Display {state_selection} DataFrame"):
+        st.dataframe(state_df)
 
 
 if __name__ == "__main__":
