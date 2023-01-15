@@ -1,4 +1,3 @@
-import plost
 import streamlit as st
 from src.data import get_data
 
