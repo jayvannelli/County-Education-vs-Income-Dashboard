@@ -9,7 +9,7 @@ def get_state_abbreviations() -> pd.Series:
     return full_dataframe["state"].unique()
 
 
-def state_counties(state_abbreviation: str) -> pd.Series | None:
+def state_counties(state_abbreviation: str) -> pd.Series:
     """Returns list of counties within passed state (by abbreviation)."""
     allowable_state_abbvs = get_state_abbreviations()
 
