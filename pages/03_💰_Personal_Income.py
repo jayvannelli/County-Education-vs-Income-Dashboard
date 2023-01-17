@@ -13,12 +13,14 @@ def main():
     ])
 
     with single_state_tab:
-        state_selection = st.selectbox(label="Select state:",
-                                       options=df['state'].unique())
+        left_column, right_column = st.columns(2)
+        with left_column:
+            state_selection = st.selectbox(label="Select state:",
+                                           options=df['state'].unique())
+        with right_column:
+            year_selection = st.selectbox("Select year to display:", options=[2019, 2020, 2021])
 
         state_df = df.loc[df['state'] == state_selection]
-
-        year_selection = st.selectbox("Select year to display:", options=[2019, 2020, 2021])
 
         plost.bar_chart(
             data=state_df,
