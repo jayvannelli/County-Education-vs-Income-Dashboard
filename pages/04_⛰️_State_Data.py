@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
 
 from src.data import get_data
-from src.states import get_state_abbreviations, state_counties
+from src.states import get_state_abbreviations
 
 
 def main():
