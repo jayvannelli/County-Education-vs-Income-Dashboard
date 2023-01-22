@@ -8,9 +8,9 @@ def main():
 
     df = get_data()
 
-    single_state_tab, multi_state_tab = st.tabs([
-        "Single State", "Multi-State"
-    ])
+    single_state_tab, multi_state_tab = st.tabs(
+        ["Single State", "Multi-State"]
+    )
 
     with single_state_tab:
         left_column, right_column = st.columns(2)
