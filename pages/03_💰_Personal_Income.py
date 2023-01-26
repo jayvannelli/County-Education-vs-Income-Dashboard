@@ -16,7 +16,7 @@ def main():
         left_column, right_column = st.columns(2)
         with left_column:
             state_selection = st.selectbox(label="Select state:",
-                                           options=df['state'].unique())
+                                           options=df['state'].sort_values().unique())
         with right_column:
             year_selection = st.selectbox("Select year to display:", options=[2019, 2020, 2021])
 
@@ -33,8 +33,8 @@ def main():
     with multi_state_tab:
         with st.form("multi_state_selection_form"):
             state_selections = st.multiselect(label="Select states:",
-                                              options=df['state'].unique(),
-                                              default=df['state'].unique()[:5])
+                                              options=df['state'].sort_values().unique(),
+                                              default=df['state'].sort_values().unique()[:5])
             submit_button = st.form_submit_button("Load data")
 
         if submit_button:

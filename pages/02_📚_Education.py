@@ -10,7 +10,7 @@ def main():
 
     left_column, right_column = st.columns(2)
     with left_column:
-        state_selection = st.selectbox("Select state:", options=df['state'].unique())
+        state_selection = st.selectbox("Select state:", options=df['state'].sort_values().unique())
         state_df = df.loc[df['state'] == state_selection]
 
     with right_column:
