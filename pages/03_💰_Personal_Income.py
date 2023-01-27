@@ -30,24 +30,35 @@ def main():
             direction='horizontal',
         )
 
+        st.write("---")
+
+        with st.expander(f"Display {state_selection} DataFrame"):
+            st.dataframe(state_df)
+
     with multi_state_tab:
-        with st.form("multi_state_selection_form"):
-            state_selections = st.multiselect(label="Select states:",
-                                              options=df['state'].sort_values().unique(),
-                                              default=df['state'].sort_values().unique()[:5])
-            submit_button = st.form_submit_button("Load data")
+        state_selections = st.multiselect(label="Select states:",
+                                          options=df['state'].sort_values().unique(),
+                                          default=df['state'].sort_values().unique()[:5])
 
-        if submit_button:
-            for state in state_selections:
-                st.subheader(f"Pandas DataFrame for state: {state}")
+        # No state selected.
+        if len(state_selections) == 0:
+            st.info("Please select one, or multiple, state values from the multiselect box")
 
-                single_state_df = df.loc[df['state'] == state]
-                st.dataframe(single_state_df)
+        # 0 < x < 10 states selected.
+        elif 0 < len(state_selections) <= 10:
+            state_selections_query = df.query("state == @state_selections")
 
-    st.write("---")
+            st.subheader("Basic chart")
+            st.bar_chart(state_selections_query, x="county", y="per_capita_personal_income_2019")
 
-    with st.expander(f"Display {state_selection} DataFrame"):
-        st.dataframe(state_df)
+            st.write("---")
+
+            with st.expander("Display full DataFrame"):
+                st.dataframe(state_selections_query)
+
+        # 10+ states selected.
+        else:
+            st.warning("Cannot exceed 10 state selections.")
 
 
 if __name__ == "__main__":
